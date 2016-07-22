@@ -1,0 +1,60 @@
+{
+  "name": "world",
+  "runtime": "nodejs4.3",
+  "description": "Serverless Lambda function for project: hello",
+  "customName": false,
+  "customRole": false,
+  "handler": "handler.handler",
+  "timeout": 6,
+  "memorySize": 1024,
+  "authorizer": {},
+  "custom": {
+    "excludePatterns": []
+  },
+  "endpoints": [
+    {
+      "path": "world",
+      "method": "GET",
+      "type": "AWS",
+      "authorizationType": "none",
+      "authorizerFunction": false,
+      "apiKeyRequired": false,
+      "requestParameters": {},
+      "requestTemplates": "$${apiGatewayRequestTemplate}",
+      "responses": {
+          "400": {
+              "selectionPattern": "^\\[BadRequest\\].*",
+              "statusCode": "400"
+          },
+          "403": {
+              "selectionPattern": "^\\[Forbidden\\].*",
+              "statusCode": "403"
+          },
+          "404": {
+              "selectionPattern": "^\\[NotFound\\].*",
+              "statusCode": "404"
+          },
+          "default": {
+              "statusCode": "302",
+              "responseParameters": {"method.response.header.Location":"integration.response.body.location"},
+              "responseModels": {
+                  "application/json;charset=UTF-8": "Empty"
+              },
+              "responseTemplates": {
+                  "application/json;charset=UTF-8": ""
+              }
+          }
+      }
+  }
+  ],
+  "events": [],
+  "environment": {
+    "SERVERLESS_PROJECT": "${project}",
+    "SERVERLESS_STAGE": "${stage}",
+    "SERVERLESS_REGION": "${region}"
+  },
+  "vpc": {
+    "securityGroupIds": [],
+    "subnetIds": []
+  }
+}
