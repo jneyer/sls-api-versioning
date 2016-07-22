@@ -16,7 +16,8 @@ exports.handler = function(event, context, cb) {
         cb("[NotFound] Requested resource was not found.");
     }
     else {
-        context.succeed({location:url});
+        var versionstring = "world/v" + ((query && query.v)?query.v:"2");
+        context.succeed({location:url, apiversion:versionstring});
     }
 
     function tryParseJson(str) {
