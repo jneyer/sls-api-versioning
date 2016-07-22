@@ -2,6 +2,7 @@
 
 module.exports.handler = function(event, context, cb) {
   return cb(null, {
-    message: 'Hello world! world/v1'
+    message: 'Hello world!',
+    apiversion: 'world/v1'
   });
 };

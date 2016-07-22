@@ -22,30 +22,33 @@
       "requestParameters": {},
       "requestTemplates": "$${apiGatewayRequestTemplate}",
       "responses": {
-          "400": {
-              "selectionPattern": "^\\[BadRequest\\].*",
-              "statusCode": "400"
+        "400": {
+          "selectionPattern": "^\\[BadRequest\\].*",
+          "statusCode": "400"
+        },
+        "403": {
+          "selectionPattern": "^\\[Forbidden\\].*",
+          "statusCode": "403"
+        },
+        "404": {
+          "selectionPattern": "^\\[NotFound\\].*",
+          "statusCode": "404"
+        },
+        "default": {
+          "statusCode": "302",
+          "responseParameters": {
+            "method.response.header.Location": "integration.response.body.location",
+            "method.response.header.X-API-Version": "integration.response.body.apiversion"
           },
-          "403": {
-              "selectionPattern": "^\\[Forbidden\\].*",
-              "statusCode": "403"
+          "responseModels": {
+            "application/json;charset=UTF-8": "Empty"
           },
-          "404": {
-              "selectionPattern": "^\\[NotFound\\].*",
-              "statusCode": "404"
-          },
-          "default": {
-              "statusCode": "302",
-              "responseParameters": {"method.response.header.Location":"integration.response.body.location"},
-              "responseModels": {
-                  "application/json;charset=UTF-8": "Empty"
-              },
-              "responseTemplates": {
-                  "application/json;charset=UTF-8": ""
-              }
+          "responseTemplates": {
+            "application/json;charset=UTF-8": ""
           }
+        }
       }
-  }
+    }
   ],
   "events": [],
   "environment": {
