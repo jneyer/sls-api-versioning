@@ -6,7 +6,7 @@ This is an example implementation of API versioning managed via Lambda redirects
 ## AWS gateway / Lambda / Serverless
 This is an AWS specific solution to the versioning problem. The AWS gateway allows configuration as a proxy or to Lambda functions. This project sets up API endpoints to Serverless resources for version 1 and version 2 of a sample world API. The world endpoint is the arbiter of which version should be accessed. When it sees a query parameter "v" it uses the parameter value as the version number. Ideally you could perform deep inspection of the request in Lambda to determine which version to send the request.
 
-![AWS API Gateway and Lambda](images/camp.png)
+<center>![AWS API Gateway and Lambda](images/camp.png)</center>
 
 
 ## Install
